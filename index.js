@@ -33,7 +33,6 @@ const Route = sequelize.define('route', {
 }, {
   indexes: [
     {
-      unique: true,
       fields: ['projectId']
     }
   ]
@@ -50,7 +49,6 @@ const Stop = sequelize.define('stop', {
 }, {
   indexes: [
     {
-      unique: true,
       fields: ['routeId']
     }
   ]
