@@ -1,0 +1,24 @@
+{
+  "name": "sequelize-playground",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "xo",
+    "fix": "xo --fix"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pg": "6.4.2",
+    "pg-hstore": "2.3.2",
+    "sequelize": "4.32.2"
+  },
+  "devDependencies": {
+    "xo": "0.18.2"
+  },
+  "xo": {
+    "space": true
+  }
+}
