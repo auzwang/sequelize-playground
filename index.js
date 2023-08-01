@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('process.env.TABLE', process.env.NAME, null, {
+const sequelize = new Sequelize('name', 'credential', null, {
 	host: 'localhost',
 	dialect: 'postgres',
 
