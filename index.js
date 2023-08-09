@@ -1,4 +1,14 @@
+var express = require("express");
 const Sequelize = require('sequelize');
+
+var app = express();
+
+app.post("/xss", function (req, res) {
+	sequelize.query(
+		"SELECT * FROM Products WHERE name LIKE " + req.body.username
+	);
+	res.write(req.body.xss)
+});
 
 const sequelize = new Sequelize('name', 'credentialxxxx', null, {
 	host: 'localhost',
