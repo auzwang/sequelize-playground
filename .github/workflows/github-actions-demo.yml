@@ -16,7 +16,3 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      - name: "Use vulnerability"
-        uses: embano1/wip@v1
-      - run: echo "This should have created a security alert"
-
