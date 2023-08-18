@@ -10,7 +10,7 @@ app.post("/xss", function (req, res) {
 	res.write('req.body.xss')
 });
 
-const sequelize = new Sequelize('name', process.env.SECRET, null, {
+const sequelize = new Sequelize('name', 'process.env.SECRET', null, {
 	host: 'localhost',
 	dialect: 'postgres',
 
