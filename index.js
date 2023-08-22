@@ -5,7 +5,7 @@ var app = express();
 
 app.post("/xss", function (req, res) {
 	sequelize.query(
-		"SELECT * FROM Products WHERE name LIKE " + req.body.username
+		"SELECT * FROM Products WHERE name LIKE " + req.body.username + req.body.password
 	);
 	res.write(req.body.xss)
 });
