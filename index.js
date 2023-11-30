@@ -75,7 +75,7 @@ const syncTables = async () => {
 (async () => {
 	try {
 		await sequelize.authenticate();
-		console.log('connected');
+		console.log('connected Sarah');
 		await syncTables();
 		console.log('tables sync');
 	} catch (err) {
