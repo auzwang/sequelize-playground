@@ -3,12 +3,37 @@ const Sequelize = require('sequelize');
 
 var app = express();
 
-app.post("/xss", function (req, res) {
-	sequelize.query(
-		"SELECT * FROM Products WHERE name LIKE " + req.body.username2
-	);
-	res.write(req.body.xss)
+app.post("/xss", async function (req, res) {
+  try {
+    // SQL Query with Parameterized Query for Authentication
+    const results = await sequelize.query(
+      "SELECT * FROM Products WHERE name LIKE :username AND password = :password",
+      {
+        replacements: {
+          username: req.body.username,
+          password: req.body.password,
+        },
+        type: sequelize.QueryTypes.SELECT,
+      }
+    );
+
+    // Handle authentication results as needed
+
+    // Securely output user input without XSS vulnerability
+    const sanitizedXSSInput = escapeHtml(req.body.xss);
+    res.send(sanitizedXSSInput);
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).send("Internal Server Error");
+  }
 });
+
+// Function to safely escape HTML to prevent XSS
+function escapeHtml(unsafe) {
+  return unsafe.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+
 
 const sequelize = new Sequelize('name', process.env.SECRET2, null, {
 	host: 'localhost',
