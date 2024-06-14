@@ -3,13 +3,6 @@ const Sequelize = require('sequelize');
 
 var app = express();
 
-app.post("/xss", function (req, res) {
-	sequelize.query(
-		"SELECT * FROM Products WHERE name LIKE " + req.body.username2
-	);
-	res.write(req.body.xss)
-});
-
 const sequelize = new Sequelize('name', process.env.SECRET2, null, {
 	host: 'localhost',
 	dialect: 'postgres',
