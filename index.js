@@ -1,5 +1,8 @@
 var express = require("express");
 const Sequelize = require('sequelize');
+const Frame = require('./models/Frame');
+const Drawer = require('./models/Drawer');
+const DrawerSlide = require('./models/DrawerSlide');
 
 var app = express();
 
@@ -59,10 +62,34 @@ const Stop = sequelize.define('stop', {
 
 Stop.belongsTo(Route);
 
+const Frame = sequelize.define('frame', {
+	...primaryKey,
+	width: Sequelize.FLOAT,
+	height: Sequelize.FLOAT,
+	depth: Sequelize.FLOAT,
+	material: Sequelize.STRING,
+	slideType: Sequelize.STRING,
+	slidePositions: Sequelize.JSONB,
+	status: Sequelize.STRING
+});
+
+const Drawer = sequelize.define('drawer', {
+	...primaryKey,
+	width: Sequelize.FLOAT,
+	height: Sequelize.FLOAT,
+	depth: Sequelize.FLOAT,
+	material: Sequelize.TEXT,
+	status: Sequelize.TEXT,
+	externalId: Sequelize.TEXT
+});
+
 const syncTables = async () => {
 	await Project.sync();
 	await Route.sync();
 	await Stop.sync();
+	await Frame.sync();
+	await Drawer.sync();
+	await DrawerSlide.sync();
 };
 
 (async () => {
@@ -75,3 +102,18 @@ const syncTables = async () => {
 		console.log('unable to connect', err);
 	}
 })();
+
+// Define relationships between Frame, Drawer and DrawerSlide
+Frame.hasMany(Drawer);
+Drawer.belongsTo(Frame);
+
+Frame.hasMany(DrawerSlide);
+DrawerSlide.belongsTo(Frame);
+
+Drawer.hasOne(DrawerSlide);
+DrawerSlide.belongsTo(Drawer);
+
+module.exports = {
+	sequelize,
+	primaryKey
+};
