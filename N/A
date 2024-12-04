@@ -1,0 +1,10 @@
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/greet')
+def greet():
+    return "Hello! Welcome to the greeting service!"
+
+if __name__ == '__main__':
+    app.run(debug=True)

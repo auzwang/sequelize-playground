@@ -1,7 +1,11 @@
 var express = require("express");
 const Sequelize = require('sequelize');
+const greetingRoutes = require('./routes/greetingRoutes');
 
 var app = express();
+
+// Mount routes
+app.use('/api', greetingRoutes);
 
 const sequelize = new Sequelize('name', process.env.SECRET2, null, {
 	host: 'localhost',
