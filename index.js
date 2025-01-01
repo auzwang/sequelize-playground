@@ -75,3 +75,14 @@ const syncTables = async () => {
 		console.log('unable to connect', err);
 	}
 })();
+
+// Greeting endpoint
+app.get('/greeting', (req, res) => {
+    res.json({ message: 'Welcome! Thanks for visiting our service.' });
+});
+
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
