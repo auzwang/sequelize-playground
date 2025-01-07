@@ -3,6 +3,11 @@ const Sequelize = require('sequelize');
 
 var app = express();
 
+// Add greeting endpoint
+app.get('/greeting', (req, res) => {
+    res.json({ message: 'Hello! Welcome to the application.' });
+});
+
 const sequelize = new Sequelize('name', process.env.SECRET2, null, {
 	host: 'localhost',
 	dialect: 'postgres',
@@ -75,3 +80,9 @@ const syncTables = async () => {
 		console.log('unable to connect', err);
 	}
 })();
+
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});

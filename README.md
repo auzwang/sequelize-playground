@@ -1,3 +1,0 @@
-## Prerequisites
-* PostgreSQL
-* PostGIS
