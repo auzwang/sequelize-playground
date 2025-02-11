@@ -3,6 +3,10 @@ const Sequelize = require('sequelize');
 
 var app = express();
 
+app.get('/', (req, res) => {
+    res.send('Hello Michael');
+});
+
 const sequelize = new Sequelize('name', process.env.SECRET2, null, {
 	host: 'localhost',
 	dialect: 'postgres',
