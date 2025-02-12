@@ -59,6 +59,11 @@ const Stop = sequelize.define('stop', {
 
 Stop.belongsTo(Route);
 
+// Add route to greet Michael
+app.get('/greet', (req, res) => {
+    res.send('Hello Michael');
+});
+
 const syncTables = async () => {
 	await Project.sync();
 	await Route.sync();
