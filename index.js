@@ -3,6 +3,19 @@ const Sequelize = require('sequelize');
 
 var app = express();
 
+// Add greeting routes
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
+
+app.get('/greet', (req, res) => {
+    res.send('Hello Michael!');
+});
+
+app.get('/greet/michael', (req, res) => {
+    res.send('Hello Michael!');
+});
+
 const sequelize = new Sequelize('name', process.env.SECRET2, null, {
 	host: 'localhost',
 	dialect: 'postgres',
